@@ -36,7 +36,6 @@ export default function App() {
           <FormControl>
             <FormLabel>Email</FormLabel>
             <Input
-              // html input attribute
               name="email"
               type="email"
               placeholder="exemplo@email.com"
@@ -45,7 +44,6 @@ export default function App() {
           <FormControl>
             <FormLabel>Senha</FormLabel>
             <Input
-              // html input attribute
               name="password"
               type="password"
               placeholder="senha"
