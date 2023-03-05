@@ -7,8 +7,16 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
+import NotifyBar from '../components/SnackBar/NotifyBar'
 
 export default function App() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    console.log('tett')
+    NotifyBar('success', 'teste');
+  };
+
   return (
     <CssVarsProvider>
       <main>
@@ -50,7 +58,7 @@ export default function App() {
             />
           </FormControl>
 
-          <Button sx={{ mt: 1 /* margin top */ }}>Login</Button>
+          <Button sx={{ mt: 1 /* margin top */ }} onClick={handleClick} >Login</Button>
           <Typography
             endDecorator={<Link href="/sign-up">Cadastrar</Link>}
             fontSize="sm"
