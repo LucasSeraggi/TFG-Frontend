@@ -1,0 +1,42 @@
+img { 
+  width: 45%;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-main {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.label {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  margin-top: 16px !important; 
+  margin-left: 4px !important;
+}
+
+.button {
+  margin-top: 32px !important;
+  margin-bottom: 24px !important;
+  margin-left: 4px !important;
+}
+
+h1 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin-top: 16px !important;
+}
+
+p {
+  font-size: 14px !important;
+  font-weight: 200 !important;
+  margin-top: 0px !important;
+}

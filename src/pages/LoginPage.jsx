@@ -26,6 +26,7 @@ export default function App() {
   };
 
   return (
+    
     <CssVarsProvider>
       <main>
         <Card
@@ -70,7 +71,7 @@ export default function App() {
 
           <Button sx={{ mt: 1 /* margin top */ }} onClick={handleClick} >Login</Button>
           <Typography
-            endDecorator={<Link href="/sign-up">Cadastrar</Link>}
+            endDecorator={<Link href="/sign-up/school/">Cadastrar</Link>}
             fontSize="sm"
             sx={{ alignSelf: 'center' }}
           >
