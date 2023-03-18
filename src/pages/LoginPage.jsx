@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider /*, useColorScheme */} from '@mui/joy/styles';
+import { CssVarsProvider /*, useColorScheme */ } from '@mui/joy/styles';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
@@ -7,17 +7,26 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import NotifyBar from '../components/SnackBar/NotifyBar'
+import LoginUser from '../services/Login/LoginApi'
 
 export default function App() {
   const [open, setOpen] = React.useState(false);
+  const [user, setUser] = React.useState({
+    email: '',
+    password: ''
+  });
 
-  const handleClick = () => {
-    console.log('tett')
-    NotifyBar('success', 'teste');
+  const handleClick = async () => {
+    if (open) return;
+    setOpen(true);
+    const resp = await LoginUser.loginUser(user);
+
+    console.log(resp)
+    setOpen(false);
   };
 
   return (
+    
     <CssVarsProvider>
       <main>
         <Card
@@ -47,6 +56,7 @@ export default function App() {
               name="email"
               type="email"
               placeholder="exemplo@email.com"
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
           </FormControl>
           <FormControl>
@@ -55,12 +65,13 @@ export default function App() {
               name="password"
               type="password"
               placeholder="senha"
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
           </FormControl>
 
           <Button sx={{ mt: 1 /* margin top */ }} onClick={handleClick} >Login</Button>
           <Typography
-            endDecorator={<Link href="/sign-up">Cadastrar</Link>}
+            endDecorator={<Link href="/sign-up/school/">Cadastrar</Link>}
             fontSize="sm"
             sx={{ alignSelf: 'center' }}
           >
