@@ -10,16 +10,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 // type: success / error / warning / info
 // arrumar para servir como um componente exportavel
 
-export default function NotifyBar(type, message) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
+export default function NotifyBar(type, message, open, handleClose) {
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
