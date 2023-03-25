@@ -7,7 +7,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import LoginUser from '../services/Login/LoginApi'
+import LoginUser from '../../services/login/LoginApi'
 
 export default function App() {
   const [open, setOpen] = React.useState(false);
@@ -71,12 +71,17 @@ export default function App() {
 
           <Button sx={{ mt: 1 /* margin top */ }} onClick={handleClick} >Login</Button>
           <Typography
-            endDecorator={<Link href="/sign-up/school/">Cadastrar</Link>}
+            endDecorator={<Link href="/sign-up/school/">Cadastrar Escola</Link>}
             fontSize="sm"
             sx={{ alignSelf: 'center' }}
           >
             Não tem uma conta?
           </Typography>
+          <Typography
+            endDecorator={<Link href="/sign-up/user/">Cadastrar Usuario</Link>}
+            fontSize="sm"
+            sx={{ alignSelf: 'center' }}
+          />
         </Card>
       </main>
     </CssVarsProvider>
