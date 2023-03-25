@@ -9,7 +9,7 @@ import List from '@mui/joy/List';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import InputMask from 'react-input-mask';
-import Register from '../../services/Login/RegisterApi';
+import Register from '../../services/login/RegisterApi';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 
@@ -110,10 +110,10 @@ export default function App() {
                     flex: 0.5 
                   }}
                 >
-                <FormLabel className="label">Instituição</FormLabel>
+                <FormLabel className="label">Instituição/Escola</FormLabel>
                     <Select
                       id="userSchool"
-                      placeholder="Instituição"
+                      placeholder="Escola Estadual"
                       onChange={(e) => console.log(e.target.value)}
                     >   
                       {instituitions.map((rol, index) => (

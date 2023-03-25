@@ -9,7 +9,7 @@ import List from '@mui/joy/List';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import InputMask from 'react-input-mask';
-import Register from '../../services/Login/RegisterApi';
+import Register from '../../services/login/RegisterApi';
 
 export default function App() {
   const [loading, setLoading] = React.useState(false);
