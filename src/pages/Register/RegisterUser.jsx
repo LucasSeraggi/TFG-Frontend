@@ -22,6 +22,13 @@ const roles = [
   'Administrador'
 ];
 
+const instituitions = [
+  'Escola Municipal',
+  'Faculdade de Direito',
+  'Unifei',
+  'Escola Ensino Médio'
+];
+
 export default function App() {
   const [loading, setLoading] = React.useState(false);
   const [form, setForm] = React.useState({
@@ -103,6 +110,28 @@ export default function App() {
                     flex: 0.5 
                   }}
                 >
+                <FormLabel className="label">Instituição</FormLabel>
+                    <Select
+                      id="userSchool"
+                      placeholder="Instituição"
+                      onChange={(e) => console.log(e.target.value)}
+                    >   
+                      {instituitions.map((rol, index) => (
+                        <Option
+                          key={index}
+                          value={rol}
+                        >
+                          {rol}
+                        </Option>
+                      ))}
+                    </Select>
+                </FormControl>
+
+                <FormControl
+                  sx={{ 
+                    flex: 0.5 
+                  }}
+                >
                 <FormLabel className="label">Cargo</FormLabel>
                     <Select
                       id="userRole"
@@ -128,7 +157,9 @@ export default function App() {
                     gap: '10px' 
                 }}
               >
-                <FormControl>
+                <FormControl sx={{ 
+                    flex: 1 
+                  }}>
                   <FormLabel className="label">Celular</FormLabel>
                   <InputMask mask="(99)99999-9999" maskPlaceholder=""
                     onChange={(e) => setForm({ ...form, telephone: e.target.value })} >
@@ -136,7 +167,9 @@ export default function App() {
                   </InputMask>
                 </FormControl>
 
-                <FormControl>
+                <FormControl sx={{ 
+                    flex: 1 
+                  }}>
                   <FormLabel className="label">CPF</FormLabel>
                   <InputMask mask="999.999.999-99" maskPlaceholder=""
                     onChange={(e) => setForm({ ...form, cpf: e.target.value })}>
@@ -144,7 +177,9 @@ export default function App() {
                   </InputMask>
                 </FormControl>
 
-                <FormControl>
+                <FormControl sx={{ 
+                    flex: 1 
+                  }}>
                   <FormLabel className="label">RG</FormLabel>
                   <InputMask mask="99.999.999-9" maskPlaceholder=""
                     onChange={(e) => setForm({ ...form, rg: e.target.value })}>
@@ -153,7 +188,9 @@ export default function App() {
                 </FormControl>
 
 
-                <FormControl>
+                <FormControl sx={{ 
+                    flex: 1 
+                  }}>
                   <FormLabel className="label">CEP</FormLabel>
                   <InputMask mask="99999-999" maskPlaceholder=""
                     onChange={(e) => setForm({ ...form, cep: e.target.value })} >
