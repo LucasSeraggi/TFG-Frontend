@@ -4,7 +4,7 @@ import Router from './router';
 
 function App() {
   return (
-    <div className="App" >
+    <div className="App" style={{ backgroundColor: '#1C1C27' }} >
       <Router />
     </div>
   );

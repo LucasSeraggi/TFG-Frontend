@@ -12,6 +12,7 @@ import InputMask from 'react-input-mask';
 import Register from '../../services/login/RegisterApi';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import { bootstrapTheme } from '../../layout/colorSchemes'
 
 const roles = [
   'Estudante',
@@ -54,7 +55,7 @@ export default function App() {
   };
 
   return (
-    <CssVarsProvider>
+    <CssVarsProvider theme={bootstrapTheme}>
       <main>
         <Card
           sx={{
@@ -68,9 +69,7 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             // borderRadius: 'sm',
-            boxShadow: 'md',
           }}
-          variant="outlined"
         >
           <List sx={{ overflow: 'auto' }}>
             <div className="column-main">
