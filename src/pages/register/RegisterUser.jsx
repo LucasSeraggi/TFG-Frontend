@@ -16,12 +16,14 @@ import Box from '@mui/material/Box';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { useNavigate } from "react-router-dom";
 
 import register from '../../services/login/RegisterApi';
 import { listSchools, listClasses, listRoles } from '../../services/login/ListResourcesApi';
 
 const App = () => {
 
+  const navigate = useNavigate();
   const [loadingCreation, setLoadingCreation] = React.useState(false);
   const [schools, setSchools] = React.useState();
   const [classes, setClasses] = React.useState();
@@ -501,6 +503,26 @@ const App = () => {
                 />
               </FormControl>
             </div>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                gap: '10px'
+              }}
+            >
+            <Button
+              id="btnBack"
+              className="button"
+              onClick={() => navigate('/')}
+              sx={{
+                backgroundColor: '#6776ED',
+                '&:hover': {
+                  backgroundColor: '#495DFC',
+                },
+              }}
+            >
+              Voltar
+            </Button>
             <Button
               id="btnConfirm"
               className="button"
@@ -520,6 +542,7 @@ const App = () => {
                 'Criar Conta'
               )}
             </Button>
+            </div>
           </div>
         </List>
       </Card>

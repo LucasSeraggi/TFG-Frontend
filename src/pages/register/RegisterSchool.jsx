@@ -10,9 +10,11 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import InputMask from 'react-input-mask';
 import Register from '../../services/login/RegisterApi';
+import { useNavigate } from "react-router-dom";
 import { bootstrapTheme } from '../../layout/colorSchemes'
 
 export default function App() {
+  const navigate = useNavigate();
   const [loading, setLoading] = React.useState(false);
   const [form, setForm] = React.useState({
     name: '',
@@ -99,7 +101,29 @@ export default function App() {
                 onChange={(e) => setForm({ ...form, passwordConfirmation: e.target.value })}
               />
 
+              <div style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  gap: '10px'
+                }}
+              >
+              <Button
+                id="btnBack"
+                className="button"
+                onClick={() => navigate('/')}
+                sx={{
+                  backgroundColor: '#6776ED',
+                  '&:hover': {
+                    backgroundColor: '#495DFC',
+                  },
+                }}
+              >
+                Voltar
+              </Button>
+
               <Button color="neutral" className="button" onClick={handleClickRegister} >Cadastrar</Button>
+              </div>
               <div style={{ minHeight: '1px' }}></div>
             </div>
           </List>

@@ -1,3 +1,4 @@
+import './styles.css';
 import * as React from 'react';
 import { CssVarsProvider /*, useColorScheme */ } from '@mui/joy/styles';
 import Card from '@mui/joy/Card';
@@ -41,8 +42,10 @@ export default function App() {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            borderRadius: 'sm',
-            backgroundColor: '#636185',
+            // borderRadius: 'sm',
+            borderColor: '#35344F',
+            boxShadow: '5px 5px 5px black;',
+            backgroundColor: '#636185'
           }}
         >
           <div>
@@ -55,13 +58,14 @@ export default function App() {
               borderBottomRightRadius: 0,
               gap: 6,
               mx: '-15px', // margin left & right
+              boxShadow: '0px 0px',
               backgroundColor: '#738ADB',
             }} >
               <div style={{ flexDirection: 'column' }}>
-                <Typography level="h4" component="h3" style={{ color: '#ffffff' }}>
+                <Typography level="h4" component="h3" className="label2">
                   <b>Bem vindo!</b>
                 </Typography>
-                <Typography level="body2" style={{ color: '#ffffff' }}>Faça login para continuar.</Typography>
+                <Typography level="body2" className="label2">Faça login para continuar.</Typography>
                 </div>
 
                 <img
@@ -72,21 +76,21 @@ export default function App() {
             </Card>
           </div>
           <FormControl>
-            <FormLabel style={{ color: '#ffffff' }}>Email</FormLabel>
+            <FormLabel className="label">Email</FormLabel>
             <Input
-              sx={{ background: '#8E8CAC', color: '#ffffff' }}
               name="email"
               type="email"
+              className="form"
               placeholder="exemplo@email.com"
               onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
           </FormControl>
           <FormControl>
-            <FormLabel style={{ color: '#ffffff' }}>Senha</FormLabel>
+            <FormLabel className="label">Senha</FormLabel>
             <Input
-              sx={{ background: '#8E8CAC', color: '#ffffff' }}
               name="password"
               type="password"
+              className="form"
               placeholder="senha"
               onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
