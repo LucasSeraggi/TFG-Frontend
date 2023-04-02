@@ -7,7 +7,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import LoginUser from '../../services/Login/LoginApi'
+import LoginUser from '../../services/login/LoginApi'
 
 export default function App() {
   const [open, setOpen] = React.useState(false);
