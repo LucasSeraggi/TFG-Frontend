@@ -3,7 +3,7 @@ import Api from "../Api";
 export default {
   async loginUser(user) {
     try {
-      const response = await Api().post('/user/login', {
+      const response = await Api().post('/school/login', {
         email: user.email,
         password: user.password,
       });

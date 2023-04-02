@@ -1,13 +1,11 @@
-import Api from "../Api";
+import api from "../Api";
 
-export default {
-  async registerNewUser(newUser) {
+const register = {
+  async newUser(newUser) {
     try {
-      const response = await Api().post('/user/register', newUser);
-      const { token } = response.data;
+      const response = await api().post('/user/register', newUser);
 
-      if (token) {
-        localStorage.setItem('jwt', token);
+      if (response.data.success === true) {
         alert('Usuário cadastrado com sucesso!')
       }
     } catch (err) {
@@ -16,9 +14,9 @@ export default {
     }
   },
 
-  async registerNewSchool(newSchool) {
+  async newSchool(newSchool) {
     try {
-      const response = await Api().post('/school/register', newSchool);
+      const response = await api().post('/school/register', newSchool);
       const { token } = response.data;
 
       if (token) {
@@ -31,3 +29,5 @@ export default {
     }
   },
 };
+
+export default register;
