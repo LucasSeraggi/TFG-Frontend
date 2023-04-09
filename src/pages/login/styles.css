@@ -1,22 +1,22 @@
 @font-face {
     font-family: "Aestetico SemiBold";
-    src: url("../../fonts/fontspring-demo-aestetico-semibold-webfont.woff") format("woff");
+    src: url("../../assets/fonts/fontspring-demo-aestetico-semibold-webfont.woff") format("woff");
   }
 
   @font-face {
     font-family: "Aestetico Regular";
-    src: url("../../fonts/fontspring-demo-aesteticoinformal-regular-webfont.woff") format("woff");
+    src: url("../../assets/fonts/fontspring-demo-aesteticoinformal-regular-webfont.woff") format("woff");
   }
 
   @font-face {
     font-family: "Gelion Regular";
-    src: url("../../fonts/gelion_regular-webfont.woff") format("woff");
+    src: url("../../assets/fonts/gelion_regular-webfont.woff") format("woff");
     unicode-range: U+0025-00FF;
   }
 
   @font-face {
     font-family: "Gelion Semibold";
-    src: url("../../fonts/gelion_semibold-webfont.woff") format("woff");
+    src: url("../../assets/fonts/gelion_semibold-webfont.woff") format("woff");
   }
 
   body {

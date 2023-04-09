@@ -1,26 +1,26 @@
   @font-face {
     font-family: "Aestetico SemiBold";
-    src: url("../../fonts/fontspring-demo-aestetico-semibold-webfont.woff") format("woff");
+    src: url("../../../assets/fonts/fontspring-demo-aestetico-semibold-webfont.woff") format("woff");
   }
 
   @font-face {
     font-family: "Aestetico Regular";
-    src: url("../../fonts/fontspring-demo-aesteticoinformal-regular-webfont.woff") format("woff");
+    src: url("../../../assets/fonts/fontspring-demo-aesteticoinformal-regular-webfont.woff") format("woff");
   }
 
   @font-face {
     font-family: "Gelion Regular";
-    src: url("../../fonts/gelion_regular-webfont.woff") format("woff");
+    src: url("../../../assets/fonts/gelion_regular-webfont.woff") format("woff");
     unicode-range: U+0025-00FF;
   }
 
   @font-face {
     font-family: "Gelion Semibold";
-    src: url("../../fonts/gelion_semibold-webfont.woff") format("woff");
+    src: url("../../../assets/fonts/gelion_semibold-webfont.woff") format("woff");
   }
 
   body {
-    background-color: #35344F;
+    background-color: #4a4969;
   }
 
   main {
@@ -64,10 +64,23 @@
     border-color: white !important;
   }
 
+  .formError {
+    --joy-palette-primary-500: #f46a6a;
+    font-family: 'Gelion Regular' !important;
+    background: #8E8CAC !important;
+    color: white !important;
+    border-radius: 5px !important;
+    border-color: #f46a6a !important;
+  }
+
   .MuiInputBase-root {
     color: white !important;
     font-family: 'Gelion Regular' !important;
-    box-shadow: inset 0 0 0 1.3px white !important;
+    box-shadow: inset 0 0 0 1.3px white;
+  }
+
+  .Mui-selected {
+    background-color: #738ADB !important;
   }
 
   .user-register {
@@ -95,4 +108,11 @@
     font-family: 'Aestetico Regular' !important;
     text-align: left !important;
     color: white !important;
+  }
+
+  .invalidInfo {
+    font-size: 80%;
+    color: #f46a6a;
+    text-align: left;
+    margin-bottom: -15px;
   }
