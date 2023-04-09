@@ -4,7 +4,6 @@ const listSchools = async () => {
     let listSchools = [];
     try {
         const schools = await api().get('/schools', {headers: `Authorization: ${localStorage.getItem('jwt')}`});
-        console.log(localStorage.getItem('jwt'))
         if (schools.data.success === true) {
             schools.data.message.map((school) => (
                 listSchools.push({'schoolId': school.id, 'schoolName': school.name})
@@ -46,4 +45,17 @@ const listRoles = async () => {
     }
 }
 
-export {listSchools, listClasses, listRoles};
+const isNewEmail = async (email) => { 
+    try {
+        const isNewUser = await api().get(`/isNewUser?email=${email}`, {headers: `Authorization: ${localStorage.getItem('jwt')}`});
+        if (isNewUser.data.message === true) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+export {listSchools, listClasses, listRoles, isNewEmail};

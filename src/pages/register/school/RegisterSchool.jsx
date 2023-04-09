@@ -9,8 +9,8 @@ import List from '@mui/joy/List';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import InputMask from 'react-input-mask';
-import Register from '../../services/login/RegisterApi';
-import { bootstrapTheme } from '../../layout/colorSchemes'
+import Register from '../../../services/register/RegisterApi';
+import { bootstrapTheme } from '../../../layout/colorSchemes'
 
 export default function App() {
   const [loading, setLoading] = React.useState(false);
@@ -49,7 +49,7 @@ export default function App() {
             backgroundColor: '#35344F',
           }}
         >
-          <img src="../../images/school-register.jpeg" />
+          <img src="../../images/school-register.jpeg" alt="School Register Figure"/>
 
           <List sx={{ overflow: 'auto' }}>
             <div className="column-main">

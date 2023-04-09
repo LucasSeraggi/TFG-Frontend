@@ -1,6 +1,6 @@
 import './RegisterUser.scss';
 
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import Card from '@mui/joy/Card';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -10,40 +10,47 @@ import Button from '@mui/joy/Button';
 import InputMask from 'react-input-mask';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import UserRegister from '../../images/register-user.png';
+import UserRegister from '../../../assets/images/register-user.png';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers-pro';
+import ptBR from 'date-fns/locale/pt-BR';
 
-import register from '../../services/login/RegisterApi';
-import { listSchools, listClasses, listRoles } from '../../services/login/ListResourcesApi';
+import registerUser from '../../../services/register/RegisterApi';
+import { listSchools, listClasses, listRoles, isNewEmail } from '../../../services/resources/ListResourcesApi';
+import schema from './RegisterUserValidation';
 
 const App = () => {
 
-  const [loadingCreation, setLoadingCreation] = React.useState(false);
-  const [schools, setSchools] = React.useState();
-  const [classes, setClasses] = React.useState();
-  const [roles, setRoles] = React.useState();
-  const [isSchoolSelected, setIsSchoolSelected] = React.useState(false);
-  const [form, setForm] = React.useState({
-    school_id: '', //
-    class_id: '', //
-    name: '', //
+  const [loadingCreation, setLoadingCreation] = useState(false);
+  const [schools, setSchools] = useState();
+  const [classes, setClasses] = useState();
+  const [roles, setRoles] = useState();
+  const [isSchoolSelected, setIsSchoolSelected] = useState(false);
+  const [form, setForm] = useState({
+    school_id: '',
+    class_id: '',
+    name: '',
     registration: '2018000000',
-    birth_date: '', //
-    address: '', //
-    cpf: '', //
-    rg: '', //
-    cep: '', //
-    email: '', //
-    role: '', //
-    phone: '', //
+    birth_date: '',
+    address: '',
+    cpf: '',
+    rg: '',
+    cep: '',
+    email: '',
+    role: '',
+    phone: '',
     password: ''
   });
+  const [passwordConfirm, setPasswordConfirm] = useState();
+  const [dateValidation, setDateValidation] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(async () => {
       setSchools(await listSchools());
       setClasses(await listClasses());
@@ -51,30 +58,38 @@ const App = () => {
     }, 10000);
   }, []);
 
-  const handleSubmit = async () => {
+  const { handleSubmit, formState: { errors }, setValue, clearErrors, setError } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  useEffect(() => {
+    setValue("school", form.school_id);
+    setValue("class", form.class_id);
+    setValue("name", form.name);
+    setValue("birthDate", dateValidation);
+    setValue("address", form.address);
+    setValue("cpf", form.cpf);
+    setValue("rg", form.rg);
+    setValue("cep", form.cep);
+    setValue("email", form.email);
+    setValue("role", form.role);
+    setValue("phone", form.phone);
+    setValue("password", form.password);
+    setValue("passwordConfirm", passwordConfirm);
+  }, [form, dateValidation, passwordConfirm, setValue]);
+
+  const onSubmit = async () => {
     console.log(form);
     if (loadingCreation) return;
     setLoadingCreation(true);
-    await register.newUser(form);
+    if (await isNewEmail(form.email) === false) {
+      setError('email', {message: 'E-mail já cadastrado'});
+      setLoadingCreation(false);
+      return;
+    }
+    await registerUser.newUser(form);
     setLoadingCreation(false);
   };
-
-  const handleValidateForm = Yup.object().shape ({
-    name: Yup.string()
-      .required('O nome é obrigatório')
-      .max(255, 'Número máximo de caracteres excedido'),
-    email: Yup.string()
-      .required('O e-mail é obrigatório')
-      .email('O e-mail é inválido')
-      .max(255, '"Número máximo de caracteres excedido'),
-    password: Yup.string()
-      .required('A senha é obrigatória')
-      .min(6, 'Deve ter pelo menos 6 caracteres')
-      .max(40, 'Deve ter no máximo 40 caracteres'),
-    confirmPassword: Yup.string()
-      .required('Confirmação da senha é obrigatória')
-      .oneOf([Yup.ref('password'), null], 'As senhas são diferentes'),
-  });
 
   return (
     <main>
@@ -114,7 +129,7 @@ const App = () => {
                 flex: 3,
               }}
             >
-              <h1>Cadastrar uma nova conta</h1>
+              <h1>Cadastrar um novo usuário</h1>
               <h3>Preencha os dados abaixo</h3>
             </div>
             <div
@@ -141,15 +156,25 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Nome</FormLabel>
+                <FormLabel className="label">Nome*</FormLabel>
                 <Input
                   id="name"
                   type="name"
+                  name="name"
                   placeholder="Nome"
-                  className="form"
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  
+                  className={errors.name ? ("formError") : ("form")}
+                  onChange={(e) => {
+                    clearErrors("name");
+                    setForm({ ...form, name: e.target.value })
+                  }}
+
                 />
+                {errors.name ? (
+                  <div className='invalidInfo'>
+                    {errors.name.message}
+                  </div>
+                ) : ('')}
+
               </FormControl>
 
               <FormControl
@@ -157,16 +182,22 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Email</FormLabel>
+                <FormLabel className="label">Email*</FormLabel>
                 <Input
                   id="email"
                   type="email"
                   placeholder="aluno@host.com"
-                  className="form"
-                  onChange={(e) => (
+                  className={errors.email ? ("formError") : ("form")}
+                  onChange={(e) => {
+                    clearErrors("email");
                     setForm({ ...form, email: e.target.value })
-                  )}
+                  }}
                 />
+                {errors.email ? (
+                  <div className='invalidInfo'>
+                    {errors.email.message}
+                  </div>
+                ) : ('')}
               </FormControl>
             </div>
 
@@ -182,11 +213,11 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Instituição</FormLabel>
+                <FormLabel className="label">Instituição*</FormLabel>
                 <Select
                   id="school"
                   placeholder="Selecione uma opção"
-                  className="form"
+                  className={errors.school ? ("formError") : ("form")}
                   slotProps={{
                     listbox: {
                       sx: {
@@ -210,6 +241,7 @@ const App = () => {
                     setForm({ ...form, class_id: '' });
                     setForm({ ...form, school_id: schools.find(school => school.schoolName === newValue).schoolId });
                     setIsSchoolSelected(true);
+                    clearErrors("school");
                   }}
                 >
                   {schools ? (
@@ -234,6 +266,11 @@ const App = () => {
                     </Box>
                   )}
                 </Select>
+                {errors.school ? (
+                  <div className='invalidInfo'>
+                    {errors.school.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
               <FormControl
@@ -241,12 +278,12 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Cargo</FormLabel>
+                <FormLabel className="label">Cargo*</FormLabel>
                 <Select
                   id="userRole"
                   tabIndex="0"
                   placeholder="Selecione uma opção"
-                  className="form"
+                  className={errors.role ? ("formError") : ("form")}
                   variant="outlined"
                   slotProps={{
                     listbox: {
@@ -269,6 +306,8 @@ const App = () => {
                   }}
                   onChange={(e, newValue) => {
                     setForm({ ...form, role: roles.find(role => role.roleName === newValue).roleName });
+                    clearErrors("role");
+
                   }}
                 >
                   {roles ? (
@@ -294,17 +333,22 @@ const App = () => {
                   )
                   }
                 </Select>
+                {errors.role ? (
+                  <div className='invalidInfo'>
+                    {errors.role.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
               <FormControl sx={{ flex: 1 }}>
                 <FormLabel className="label">
-                  Classe
+                  Turma*
                 </FormLabel>
                 <Select
                   id="schoolClass"
                   name='schoolClass'
-                  placeholder={isSchoolSelected?("Selecione uma opção"):("Selecione uma Instituição")}
-                  className="form"
+                  placeholder={isSchoolSelected ? ("Selecione uma opção") : ("Selecione uma Instituição")}
+                  className={errors.class ? ("formError") : ("form")}
                   slotProps={{
                     listbox: {
                       sx: {
@@ -325,9 +369,12 @@ const App = () => {
                     },
                   }}
                   onChange={(e, newValue) => {
-                    if(newValue !== null) {
+                    if (newValue !== null) {
                       setForm({ ...form, class_id: classes.find(schoolClass => schoolClass.className === newValue).classId });
-                    }                   
+                      clearErrors("class");
+
+                    }
+
                   }}
                 >
                   {classes ? (
@@ -359,6 +406,11 @@ const App = () => {
                     </Box>
                   )}
                 </Select>
+                {errors.class ? (
+                  <div className='invalidInfo'>
+                    {errors.class.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
             </div>
@@ -375,11 +427,30 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Celular</FormLabel>
+                <FormLabel className="label">Telefone*</FormLabel>
                 <InputMask mask="(99)99999-9999" maskPlaceholder=""
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })} >
-                  {() => <Input id="cellphone" type="text" placeholder="(00)00000-0000" className="form" />}
+                  onChange={(e) => {
+                    let phoneForm = e.target.value
+                      .split('(').join('')
+                      .split(')').join('')
+                      .split('-').join('')
+                      .split('_').join('');
+                    setForm({ ...form, phone: phoneForm });
+                    clearErrors("phone");
+                  }} >
+                  {() => <Input
+                    id="cellphone"
+                    type="text"
+                    placeholder="(00)00000-0000"
+                    className={errors.phone ? ("formError") : ("form")}
+
+                  />}
                 </InputMask>
+                {errors.phone ? (
+                  <div className='invalidInfo'>
+                    {errors.phone.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
               <FormControl
@@ -387,11 +458,28 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">CPF</FormLabel>
+                <FormLabel className="label">CPF*</FormLabel>
                 <InputMask mask="999.999.999-99" maskPlaceholder=""
-                  onChange={(e) => setForm({ ...form, cpf: e.target.value })}>
-                  {() => <Input id="cpf" type="text" placeholder="000.000.000-00" className="form" />}
+                  onChange={(e) => {
+                    let cpfForm = e.target.value
+                      .split('.').join('')
+                      .split('-').join('')
+                      .split('_').join('');
+                    setForm({ ...form, cpf: cpfForm })
+                    clearErrors("cpf");
+                  }}>
+                  {() => <Input
+                    id="cpf"
+                    type="text"
+                    placeholder="000.000.000-00"
+                    className={errors.cpf ? ("formError") : ("form")}
+                  />}
                 </InputMask>
+                {errors.cpf ? (
+                  <div className='invalidInfo'>
+                    {errors.cpf.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
               <FormControl
@@ -399,11 +487,29 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">RG</FormLabel>
+                <FormLabel className="label">RG*</FormLabel>
                 <InputMask mask="**-**.***.***" maskPlaceholder=""
-                  onChange={(e) => setForm({ ...form, rg: e.target.value })}>
-                  {() => <Input id="rg" type="text" placeholder="00-00.000.000" className="form" />}
+                  onChange={(e) => {
+                    let rgForm = e.target.value
+                      .split('.').join('')
+                      .split('-').join('')
+                      .split('_').join('');
+                    setForm({ ...form, rg: rgForm });
+                    clearErrors("rg");
+
+                  }}>
+                  {() => <Input
+                    id="rg"
+                    type="text"
+                    placeholder="00-00.000.000"
+                    className={errors.rg ? ("formError") : ("form")}
+                  />}
                 </InputMask>
+                {errors.rg ? (
+                  <div className='invalidInfo'>
+                    {errors.rg.message}
+                  </div>
+                ) : ('')}
               </FormControl>
             </div>
 
@@ -420,19 +526,49 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Data de Nascimento</FormLabel>
-                <InputMask mask="99/99/9999" maskPlaceholder=""
-                  onChange={(e) => {
-                    let day, month, year;
-                    day = e.target.value.slice(0, 2);
-                    month = e.target.value.slice(3, 5);
-                    year = e.target.value.slice(6);
-                    if (year.search('_') === -1) {
-                      setForm({ ...form, birth_date: new Date(year, (month - 1), day).toISOString() });
-                    }
-                  }}>
-                  {() => <Input id="birthDate" type="text" placeholder="DD/MM/AAAA" className="form" />}
-                </InputMask>
+                <FormLabel className="label">Data de Nascimento*</FormLabel>
+                <LocalizationProvider
+                  dateAdapter={AdapterDateFns}
+                  adapterLocale={ptBR}>
+                  <DemoContainer components={['DatePicker']}
+                    sx={{
+                      height: 40,
+                      padding: 0,
+                      overflow: 'hidden',
+                      flex: 1,
+                      '.MuiSvgIcon-root ': {
+                        fill: "white !important",
+                      },
+                      "& > div": {
+                        maxHeight: 40,
+                        width: '100%'
+                      },
+                      "& > div > div": {
+                        height: 40,
+                      },
+                      "& > div > div > fieldset": {
+                        borderColor: `${errors.birthDate ? ('#f46a6a !important') : ('white !important')}`,
+                      },
+                      "& .MuiInputBase-root": {
+                        boxShadow: `${errors.birthDate ? ('inset 0 0 0 1.3px #f46a6a !important') : ('inset 0 0 0 1.3px #white !important')}`,
+                      },
+                    }}>
+                    <DatePicker className={errors.birthDate ? ("formError") : ("form")}
+                      key={ptBR}
+                      onChange={(date) => {
+                        setForm({ ...form, birth_date: new Date(date).toISOString() });
+                        setDateValidation(new Date(date));
+                        clearErrors("birthDate");
+                      }}
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+                {errors.birthDate ? (
+                  <div className='invalidInfo'>
+                    {errors.birthDate.message}
+                  </div>
+                ) : ('')}
+
               </FormControl>
 
               <FormControl
@@ -440,11 +576,28 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">CEP</FormLabel>
+                <FormLabel className="label">CEP*</FormLabel>
                 <InputMask mask="99999-999" maskPlaceholder=""
-                  onChange={(e) => setForm({ ...form, cep: e.target.value })} >
-                  {() => <Input id="cep" type="text" placeholder="00000-000" className="form" />}
+                  onChange={(e) => {
+                    let cepForm = e.target.value
+                      .split('-').join('')
+                      .split('_').join('');
+                    setForm({ ...form, cep: cepForm });
+                    clearErrors("cep");
+                  }} >
+                  {() => <Input
+                    id="cep"
+                    type="text"
+                    placeholder="00000-000"
+                    className={errors.cep ? ("formError") : ("form")}
+
+                  />}
                 </InputMask>
+                {errors.cep ? (
+                  <div className='invalidInfo'>
+                    {errors.cep.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
               <FormControl
@@ -452,14 +605,23 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Endereço</FormLabel>
+                <FormLabel className="label">Endereço*</FormLabel>
                 <Input
-                  id="address" 
+                  id="address"
                   type="address"
                   placeholder="Endereço"
-                  className="form"
-                  onChange={(e) => setForm({ ...form, address: e.target.value })}
+                  className={errors.address ? ("formError") : ("form")}
+                  onChange={(e) => {
+                    clearErrors("address");
+                    setForm({ ...form, address: e.target.value })
+                  }}
+
                 />
+                {errors.address ? (
+                  <div className='invalidInfo'>
+                    {errors.address.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
             </div>
@@ -476,14 +638,23 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label" >Senha de acesso</FormLabel>
+                <FormLabel className="label" >Senha de acesso*</FormLabel>
                 <Input
                   id="password"
                   type="password"
                   placeholder="Senha"
-                  className="form"
-                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                  className={errors.password ? ("formError") : ("form")}
+                  onChange={(e) => {
+                    clearErrors("password");
+                    setForm({ ...form, password: e.target.value })
+                  }}
+
                 />
+                {errors.password ? (
+                  <div className='invalidInfo'>
+                    {errors.password.message}
+                  </div>
+                ) : ('')}
               </FormControl>
 
               <FormControl
@@ -491,26 +662,35 @@ const App = () => {
                   flex: 1
                 }}
               >
-                <FormLabel className="label">Confirme sua senha</FormLabel>
+                <FormLabel className="label">Confirme a senha*</FormLabel>
                 <Input
                   id="passwordConfirm"
                   type="password"
                   placeholder="Senha"
-                  className="form"
-                //onChange={(e) => setPasswordConfirm(e.target.value)}
+                  className={errors.passwordConfirm ? ("formError") : ("form")}
+                  onChange={(e) => {
+                    clearErrors("passwordConfirm");
+                    setPasswordConfirm(e.target.value);
+                  }}
                 />
+                {errors.passwordConfirm ? (
+                  <div className='invalidInfo'>
+                    {errors.passwordConfirm.message}
+                  </div>
+                ) : ('')}
               </FormControl>
             </div>
             <Button
               id="btnConfirm"
               className="button"
-              onClick={(e) => handleSubmit()}
+              type="submit"
               sx={{
                 backgroundColor: '#6776ED',
                 '&:hover': {
                   backgroundColor: '#495DFC',
                 },
               }}
+              onClick={handleSubmit(onSubmit)}
             >
               {loadingCreation ? (
                 <Box sx={{ display: 'flex' }}>
