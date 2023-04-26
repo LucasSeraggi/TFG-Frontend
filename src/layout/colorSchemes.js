@@ -76,6 +76,8 @@ const palette = {
   };
   
   export const bootstrapTheme = extendTheme({
+    components: {
+    },
     cssVarPrefix: 'bs',
     colorSchemes: {
       light: { palette },

@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'Heavitas';
+    src: url('../../assets/fonts/Heavitas.woff');
+    unicode-range: U+0025-00FF;
+}
+
+.footer {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    color: #ffffff !important;
+    height: 365px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-intro {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.footer-title {
+    font-family: 'Heavitas' !important;
+    font-size: 25px !important;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}
+
+.info-item {
+    flex: 1;
+    text-align: left;
+}
+
+.info-logo {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-item-title {
+    color: #00CFDD;
+}
+
+.footer-rights {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0px 20px 10vw;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    &:visited {
+        text-decoration: none;
+    }
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.social-logo {
+    
+    &:hover {
+        box-shadow: #00CFDD 0px 1px 4px, #00CFDD 0px 0px 0px 3px;
+    }
+}

@@ -42,3 +42,8 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

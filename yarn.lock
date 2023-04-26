@@ -1856,24 +1856,7 @@
     "prop-types" "^15.8.1"
     "react-is" "^18.2.0"
 
-"@mui/x-date-pickers-pro@^6.0.4":
-  "integrity" "sha512-QU4eKacOjGunBGjcGyMJDH+D3ZtYtz+zOXbWKNjGspWr1kZQuACVyPqPugfKA+itE7wfZh6XAWgsX5Xnq9x3yQ=="
-  "resolved" "https://registry.npmjs.org/@mui/x-date-pickers-pro/-/x-date-pickers-pro-6.0.4.tgz"
-  "version" "6.0.4"
-  dependencies:
-    "@babel/runtime" "^7.21.0"
-    "@date-io/date-fns" "^2.16.0"
-    "@date-io/dayjs" "^2.16.0"
-    "@date-io/luxon" "^2.16.1"
-    "@date-io/moment" "^2.16.1"
-    "@mui/utils" "^5.11.13"
-    "@mui/x-date-pickers" "6.0.4"
-    "@mui/x-license-pro" "6.0.3"
-    "clsx" "^1.2.1"
-    "prop-types" "^15.8.1"
-    "react-transition-group" "^4.4.5"
-
-"@mui/x-date-pickers@6.0.4":
+"@mui/x-date-pickers@^6.0.4":
   "integrity" "sha512-blh91rqgnr8mdm+bn5vdde7fQII0gUDmeOMttKrMLv6P6OxkQXdz5aLSroXUpPTAAbX53zciFW/UG5Ynxqxtpw=="
   "resolved" "https://registry.npmjs.org/@mui/x-date-pickers/-/x-date-pickers-6.0.4.tgz"
   "version" "6.0.4"
@@ -1892,14 +1875,6 @@
     "clsx" "^1.2.1"
     "prop-types" "^15.8.1"
     "react-transition-group" "^4.4.5"
-
-"@mui/x-license-pro@6.0.3":
-  "integrity" "sha512-4SLR4KKYNU53H1RRwM4Pw0Lwneivsqrng2GSD8aoozCP4qWL+PxEIw67q91FvYSvWJr3LMFS90hQE6TI0xXv4Q=="
-  "resolved" "https://registry.npmjs.org/@mui/x-license-pro/-/x-license-pro-6.0.3.tgz"
-  "version" "6.0.3"
-  dependencies:
-    "@babel/runtime" "^7.21.0"
-    "@mui/utils" "^5.11.13"
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   "integrity" "sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg=="
@@ -3652,11 +3627,6 @@
   "resolved" "https://registry.npmjs.org/cjs-module-lexer/-/cjs-module-lexer-1.2.2.tgz"
   "version" "1.2.2"
 
-"classnames@^2.2.5":
-  "integrity" "sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw=="
-  "resolved" "https://registry.npmjs.org/classnames/-/classnames-2.3.2.tgz"
-  "version" "2.3.2"
-
 "clean-css@^5.2.2":
   "integrity" "sha512-JVJbM+f3d3Q704rF4bqQ5UUyTtuJ0JRKNbTKVEeujCCBoMdkEi+V+e8oktO9qGQNSvHrFTM6JZRXrUvGR1czww=="
   "resolved" "https://registry.npmjs.org/clean-css/-/clean-css-5.3.2.tgz"
@@ -3866,7 +3836,7 @@
   "resolved" "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.27.2.tgz"
   "version" "3.27.2"
 
-"core-js@^3.1.3", "core-js@^3.19.2":
+"core-js@^3.19.2":
   "integrity" "sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w=="
   "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.27.2.tgz"
   "version" "3.27.2"
@@ -5117,14 +5087,6 @@
   "version" "2.0.2"
   dependencies:
     "bser" "2.1.1"
-
-"feather-icons@^4.29.0":
-  "integrity" "sha512-Y7VqN9FYb8KdaSF0qD1081HCkm0v4Eq/fpfQYQnubpqi0hXx14k+gF9iqtRys1SIcTEi97xDi/fmsPFZ8xo0GQ=="
-  "resolved" "https://registry.npmjs.org/feather-icons/-/feather-icons-4.29.0.tgz"
-  "version" "4.29.0"
-  dependencies:
-    "classnames" "^2.2.5"
-    "core-js" "^3.1.3"
 
 "file-entry-cache@^6.0.1":
   "integrity" "sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg=="
