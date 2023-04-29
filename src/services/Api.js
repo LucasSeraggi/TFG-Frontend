@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 //Comunicação Front - Back
-export default () => axios.create({
-    baseURL: 'http://localhost:3000/api',
+const api = () => axios.create({
+    baseURL: 'http://localhost:3333/api',
 });
+
+export default api;

@@ -1,0 +1,72 @@
+@font-face {
+    font-family: "Gelion Regular";
+    src: url("../../assets/fonts/gelion_regular-webfont.woff") format("woff");
+    unicode-range: U+0025-00FF;
+  }
+
+  @font-face {
+    font-family: "Gelion Semibold";
+    src: url("../../assets/fonts/gelion_semibold-webfont.woff") format("woff");
+  }
+
+.outside-box {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    margin: 60px 40px 40px 40px;
+    background-color: #35344F;
+    padding: 2%;
+}
+
+.header-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.input-search {
+    --joy-palette-primary-500: #1C1C27;
+    font-family: 'Aestetico Regular' !important;
+    background-color: #1C1C27 !important;
+    background-image: url('../../assets/images/search-icon.png');
+    background-position: 15px 50%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    color: white !important;
+    border-color: #1C1C27 !important;
+    padding-left: 50px !important;
+    width: 70%;
+    margin: 0;
+    font-family: 'Gelion Regular' !important;
+}
+
+.search-box {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+}
+
+.add-box {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.content-table {
+    padding-top: 5%;
+}
+
+.icon {
+    height: 20px;
+    width: auto;
+}
+
+th {
+    font-family: 'Gelion SemiBold' !important;
+    font-size: 1.16rem !important;
+}
+
+td {
+    font-family: 'Gelion Regular' !important;
+}
+

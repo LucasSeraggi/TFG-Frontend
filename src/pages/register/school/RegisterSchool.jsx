@@ -9,7 +9,8 @@ import List from '@mui/joy/List';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import InputMask from 'react-input-mask';
-import Register from '../../services/login/RegisterApi';
+import Register from '../../../services/register/RegisterApi';
+import { bootstrapTheme } from '../../../layout/colorSchemes'
 
 export default function App() {
   const [loading, setLoading] = React.useState(false);
@@ -31,7 +32,7 @@ export default function App() {
   };
 
   return (
-    <CssVarsProvider>
+    <CssVarsProvider theme={bootstrapTheme}>
       <main>
         <Card
           sx={{
@@ -45,18 +46,17 @@ export default function App() {
             display: 'flex',
             flexDirection: 'row',
             borderRadius: 'sm',
-            boxShadow: 'md',
+            backgroundColor: '#35344F',
           }}
-          variant="outlined"
         >
-          <img src="../../images/school-register.jpeg" />
+          <img src="../../images/school-register.jpeg" alt="School Register Figure"/>
 
           <List sx={{ overflow: 'auto' }}>
             <div className="column-main">
-              <h1>Registre sua escola</h1>
-              <p>Registre sua escola para que seus alunos e colaboradores possam se cadastrar e ter acesso ao melhor sistema escolar.</p>
+              <h1 style={{ color: '#ffffff' }}>Registre sua escola</h1>
+              <p style={{ color: '#ffffff' }}>Registre sua escola para que seus alunos e colaboradores possam se cadastrar e ter acesso ao melhor sistema escolar.</p>
               <FormControl>
-                <FormLabel className="label">Nome da Escola</FormLabel>
+                <FormLabel className="label" style={{ color: '#ffffff' }}>Nome da Escola</FormLabel>
                 <Input
                   type="name"
                   placeholder="Escola Municipal de Itajubá"
@@ -64,34 +64,34 @@ export default function App() {
                 />
               </FormControl>
 
-              <FormLabel className="label">CNPJ</FormLabel>
+              <FormLabel style={{ color: '#ffffff' }} className="label">CNPJ</FormLabel>
               <InputMask mask="99.999.999/9999-99" maskPlaceholder=""
                 onChange={(e) => setForm({ ...form, cnpj: e.target.value })}>
                 {() => <Input type="text" placeholder="00.000.000/0000-00" />}
               </InputMask>
 
 
-              <FormLabel className="label">CEP</FormLabel>
+              <FormLabel style={{ color: '#ffffff' }} className="label">CEP</FormLabel>
               <InputMask mask="99999-999" maskPlaceholder=""
                 onChange={(e) => setForm({ ...form, cep: e.target.value })} >
                 {() => <Input type="text" placeholder="00000-000" />}
               </InputMask>
 
-              <FormLabel className="label">Email</FormLabel>
+              <FormLabel style={{ color: '#ffffff' }} className="label">Email</FormLabel>
               <Input
                 type="email"
                 placeholder="escola@host.com"
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
 
-              <FormLabel className="label" >Senha de acesso</FormLabel>
+              <FormLabel style={{ color: '#ffffff' }} className="label" >Senha de acesso</FormLabel>
               <Input
                 type="password"
                 placeholder="Escola Municipal de Itajubá"
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
               />
 
-              <FormLabel className="label">Confirme sua senha</FormLabel>
+              <FormLabel style={{ color: '#ffffff' }} className="label">Confirme sua senha</FormLabel>
               <Input
                 type="password"
                 placeholder="Escola Municipal de Itajubá"
@@ -99,7 +99,7 @@ export default function App() {
                 onChange={(e) => setForm({ ...form, passwordConfirmation: e.target.value })}
               />
 
-              <Button className="button" onClick={handleClickRegister} >Cadastrar</Button>
+              <Button color="neutral" className="button" onClick={handleClickRegister} >Cadastrar</Button>
               <div style={{ minHeight: '1px' }}></div>
             </div>
           </List>
