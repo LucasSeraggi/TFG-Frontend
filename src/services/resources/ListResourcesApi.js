@@ -18,7 +18,7 @@ const listSchools = async () => {
 const listClasses = async () => {
     let listClasses = [];
     try {
-        const schoolClasses = await api().get('/classes', {headers: `Authorization: ${localStorage.getItem('jwt')}`});
+        const schoolClasses = await api().get('/class', {headers: `Authorization: ${localStorage.getItem('jwt')}`});
         if (schoolClasses.data.success === true) {
             schoolClasses.data.message.map((schoolClass) => (
                 listClasses.push({'classId': schoolClass.id, 'className': schoolClass.name, 'schoolId': schoolClass.school_id})
