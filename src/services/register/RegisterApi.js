@@ -3,7 +3,7 @@ import api from "../Api";
 const register = {
   async newUser(newUser) {
     try {
-      const response = await api().post('/user/register', newUser);
+      const response = await api().post('/user/register', newUser, {headers: `Authorization: ${localStorage.getItem('jwt')}`});
 
       if (response.data.success === true) {
         alert('Usuário cadastrado com sucesso!')

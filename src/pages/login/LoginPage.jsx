@@ -72,6 +72,7 @@ export default function App() {
                   src="../../images/loginlogo.png"
                   loading="lazy"
                   style={{ width: 100}}
+                  alt="User Login Figure"
                 />
             </Card>
           </div>

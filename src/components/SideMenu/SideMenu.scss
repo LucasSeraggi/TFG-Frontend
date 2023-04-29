@@ -1,0 +1,130 @@
+@font-face {
+    font-family: "Aestetico SemiBold";
+    src: url("../../assets/fonts/fontspring-demo-aestetico-semibold-webfont.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Aestetico Regular";
+    src: url("../../assets/fonts/fontspring-demo-aesteticoinformal-regular-webfont.woff") format("woff");
+}
+
+.box-menu {
+    position: absolute;
+    height: 95vh;
+    background-color: #28293D;
+    z-index: 100 !important;
+    color: white;
+    top: 2vh;
+    right: 0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: width ease .6s;
+}
+
+.profile-info {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.person-name {
+    font-family: 'Aestetico SemiBold' !important;
+    font-size: 25px !important;
+    white-space: nowrap;
+}
+
+.menu-input {
+    flex: 1;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.input-search-menu {
+    --joy-palette-primary-500: #1C1C27;
+    font-family: 'Aestetico Regular' !important;
+    background-color: #1C1C27 !important;
+    background-image: url('../../assets/images/search-icon.png');
+    background-position: 15px 50%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    color: white !important;
+    border-radius: 20px !important;
+    border-color: #1C1C27 !important;
+    padding-left: 50px !important;
+}
+
+.menu-options {
+    flex: 12;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 50px;
+        padding-left: 40px;
+
+        &:hover {
+            text-decoration: none;
+            background-color: #1C1C27;
+        }
+
+        img {
+            height: 25px;
+            width: auto;
+        }
+    }
+}
+
+.text-option {
+    font-family: 'Aestetico Regular' !important;
+    font-size: 16px !important;
+    padding-left: 20px;
+    white-space: nowrap;
+}
+
+.fixed-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1;
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 50px;
+        padding-left: 40px;
+
+        &:hover {
+            text-decoration: none;
+            background-color: #1C1C27;
+        }
+
+        img {
+            height: 25px;
+            width: auto;
+        }
+    }
+}
+
+.close-icon{
+    height: 30px;
+    width: 30px;
+    padding-right: 30px;
+}
+

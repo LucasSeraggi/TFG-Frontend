@@ -1,0 +1,65 @@
+.header {
+    background-color: #000000;
+    height: 90px;
+}
+
+.nav-items{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    li {
+        a {
+            &:hover {
+                text-decoration: none;
+                color: #00CFDD;
+            }
+        }
+    }
+}
+
+.school-name{
+    flex: 1;
+    font-family: 'Heavitas' !important;
+    font-size: 25px !important;
+    color: #00CFDD;
+}
+
+.school-logo {
+    height: 50px;
+    width: 50px;
+}
+
+.box-logo {
+    position: absolute;
+    padding-left: 20%;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    padding-right: 10%;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.box-profile {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    padding-left: 20%;
+}
+
+.profile-icon {
+    height: 50px;
+    width: auto;
+}

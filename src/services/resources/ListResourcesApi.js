@@ -4,7 +4,6 @@ const listSchools = async () => {
     let listSchools = [];
     try {
         const schools = await api().get('/schools', {headers: `Authorization: ${localStorage.getItem('jwt')}`});
-        console.log(localStorage.getItem('jwt'))
         if (schools.data.success === true) {
             schools.data.message.map((school) => (
                 listSchools.push({'schoolId': school.id, 'schoolName': school.name})
@@ -19,7 +18,7 @@ const listSchools = async () => {
 const listClasses = async () => {
     let listClasses = [];
     try {
-        const schoolClasses = await api().get('/classes', {headers: `Authorization: ${localStorage.getItem('jwt')}`});
+        const schoolClasses = await api().get('/class', {headers: `Authorization: ${localStorage.getItem('jwt')}`});
         if (schoolClasses.data.success === true) {
             schoolClasses.data.message.map((schoolClass) => (
                 listClasses.push({'classId': schoolClass.id, 'className': schoolClass.name, 'schoolId': schoolClass.school_id})
@@ -46,4 +45,17 @@ const listRoles = async () => {
     }
 }
 
-export {listSchools, listClasses, listRoles};
+const isNewEmail = async (email) => { 
+    try {
+        const isNewUser = await api().get(`/isNewUser?email=${email}`, {headers: `Authorization: ${localStorage.getItem('jwt')}`});
+        if (isNewUser.data.message === true) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+export {listSchools, listClasses, listRoles, isNewEmail};
