@@ -11,8 +11,10 @@ import Button from '@mui/joy/Button';
 import InputMask from 'react-input-mask';
 import Register from '../../../services/register/RegisterApi';
 import { bootstrapTheme } from '../../../layout/colorSchemes'
+import { useNavigate } from "react-router-dom";
 
-export default function App() {
+export default function RegisterSchool() {
+  const navigate = useNavigate();
   const [loading, setLoading] = React.useState(false);
   const [form, setForm] = React.useState({
     name: '',
@@ -98,9 +100,35 @@ export default function App() {
 
                 onChange={(e) => setForm({ ...form, passwordConfirmation: e.target.value })}
               />
-
-              <Button color="neutral" className="button" onClick={handleClickRegister} >Cadastrar</Button>
-              <div style={{ minHeight: '1px' }}></div>
+                <div 
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    gap: '10px'
+                  }}
+                >
+                  <Button
+                    id="btnBack"
+                    className="button"
+                    onClick={() => navigate('/')}
+                    color='neutral'
+                  >
+                    Voltar
+                  </Button>
+                  <Button 
+                    sx={{
+                      backgroundColor: '#6776ED',
+                      '&:hover': {
+                        backgroundColor: '#495DFC',
+                      },
+                    }}
+                    className="button" 
+                    onClick={handleClickRegister}>
+                      Cadastrar
+                  </Button>
+                </div>
+                <div style={{ minHeight: '1px' }}></div>
             </div>
           </List>
         </Card>

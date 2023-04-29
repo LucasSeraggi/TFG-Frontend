@@ -43,7 +43,7 @@ export default function NavBar() {
                     <nav>
                         <ul>
                             <li>
-                                <Link> Home </Link>
+                                <Link to="/home"> Home </Link>
                             </li>
                         </ul>
                         <ul>
@@ -53,7 +53,7 @@ export default function NavBar() {
                         </ul>
                         <ul>
                             <li>
-                                <Link> Cursos </Link>
+                                <Link to="/course"> Cursos </Link>
                             </li>
                         </ul>
                         <ul>

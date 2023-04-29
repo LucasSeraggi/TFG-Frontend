@@ -12,7 +12,7 @@ import LoginUser from '../../services/login/LoginApi'
 import { bootstrapTheme } from '../../layout/colorSchemes'
 import Lock from '@mui/icons-material/Lock'
 
-export default function App() {
+export default function LoginPage() {
   const [open, setOpen] = React.useState(false);
   const [user, setUser] = React.useState({
     email: '',

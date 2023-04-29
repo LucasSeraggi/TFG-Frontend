@@ -24,9 +24,10 @@ import registerUser from '../../../services/register/RegisterApi';
 import { listSchools, listClasses, listRoles, isNewEmail } from '../../../services/resources/ListResourcesApi';
 import schema from './RegisterUserValidation';
 import { bootstrapTheme } from '../../../layout/colorSchemes';
+import { useNavigate } from "react-router-dom";
 
-const App = () => {
-
+const RegisterUser = () => {
+  const navigate = useNavigate();
   const [loadingCreation, setLoadingCreation] = useState(false);
   const [schools, setSchools] = useState();
   const [classes, setClasses] = useState();
@@ -681,18 +682,34 @@ const App = () => {
                     ) : ('')}
                   </FormControl>
                 </div>
-                <Button
-                  id="btnConfirm"
-                  className="button"
-                  type="submit"
-                  sx={{
-                    backgroundColor: '#6776ED',
-                    '&:hover': {
-                      backgroundColor: '#495DFC',
-                    },
+                <div 
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    gap: '10px'
                   }}
-                  onClick={handleSubmit(onSubmit)}
                 >
+                  <Button
+                    id="btnBack"
+                    className="button"
+                    onClick={() => navigate('/')}
+                    color='neutral'
+                  >
+                    Voltar
+                  </Button>
+                  <Button
+                    id="btnConfirm"
+                    className="button"
+                    type="submit"
+                    sx={{
+                      backgroundColor: '#6776ED',
+                      '&:hover': {
+                        backgroundColor: '#495DFC',
+                      },
+                    }}
+                    onClick={handleSubmit(onSubmit)}
+                  >
                   {loadingCreation ? (
                   /*<Box sx={{ display: 'flex' }}>
                     <CircularProgress size={20} sx={{ 'color': 'white' }} />
@@ -701,6 +718,7 @@ const App = () => {
                     'Criar Conta'
                   )}
                 </Button>
+                </div>
               </div>
             </List>
           </Card>
@@ -709,4 +727,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default RegisterUser;

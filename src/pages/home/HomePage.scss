@@ -1,0 +1,99 @@
+@font-face {
+    font-family: "Aestetico SemiBold";
+    src: url("../../assets/fonts/fontspring-demo-aestetico-semibold-webfont.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Aestetico Regular";
+    src: url("../../assets/fonts/fontspring-demo-aesteticoinformal-regular-webfont.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Gelion Regular";
+    src: url("../../assets/fonts/gelion_regular-webfont.woff") format("woff");
+    unicode-range: U+0025-00FF;
+  }
+
+  @font-face {
+    font-family: "Gelion Semibold";
+    src: url("../../assets/fonts/gelion_semibold-webfont.woff") format("woff");
+  }
+
+  main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column-main {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+
+  .label2 {
+    font-family: 'Gelion Regular' !important;
+    color: white !important;
+  }
+
+  .label {
+    font-family: 'Gelion Regular' !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    margin-top: 16px !important;
+    margin-left: 4px !important;
+    color: white !important;
+    font-weight: bold !important;
+  }
+
+  .button {
+    font-family: 'Gelion Semibold' !important;
+    font-size: large !important;
+    margin-top: 32px !important;
+    margin-bottom: 24px !important;
+    margin-left: 4px !important;
+  }
+
+  .form {
+    --joy-palette-primary-500: #ffffff;
+    font-family: 'Gelion Regular' !important;
+    background: #8E8CAC !important;
+    color: white !important;
+    border-radius: 5px !important;
+    border-color: white !important;
+  }
+
+  .MuiInputBase-root {
+    color: white !important;
+    font-family: 'Gelion Regular' !important;
+    box-shadow: inset 0 0 0 1.3px white !important;
+  }
+
+  .user-register {
+    width: 150px !important;
+    text-align: right !important;
+    margin-bottom: -100px;
+  }
+
+  h1 {
+    font-family: 'Aestetico SemiBold' !important;
+    font-size: 32px !important;
+    text-align: left !important;
+    font-weight: 700 !important;
+    color: white !important;
+    flex: 5 !important;
+  }
+
+  p {
+    font-size: 14px !important;
+    font-weight: 200 !important;
+    margin-top: 0px !important;
+  }
+
+  h3 {
+    font-family: 'Aestetico Regular' !important;
+    text-align: left !important;
+    color: white !important;
+  }

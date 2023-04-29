@@ -17,9 +17,9 @@ import XIcon from '../../assets/images/x-icon.png';
 export default function SideMenu(props) {
 
     const menuOptions = [
-        { link: '#', text: 'Página Inicial', icon: HomeIcon, alt: 'Home Icon' },
+        { link: '/home', text: 'Página Inicial', icon: HomeIcon, alt: 'Home Icon' },
         { link: '#', text: 'Notificações', icon: NotificationIcon, alt: 'Notifications Icon' },
-        { link: '#', text: 'Meus Cursos', icon: CoursesIcon, alt: 'Courses Icon' },
+        { link: '/course', text: 'Meus Cursos', icon: CoursesIcon, alt: 'Courses Icon' },
         { link: '#', text: 'Meu Perfil', icon: ProfileMiniIcon, alt: 'Profile Icon' },
     ];
     const fixedOptions = [

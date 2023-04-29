@@ -1,0 +1,52 @@
+
+  body {
+    background-color: #35344F;
+  }
+
+  main {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-end;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .grid-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 80%;
+    width: 80%;
+  }
+
+  .grid-sub {
+    display: flex;
+    flex-direction: row;
+    max-height: 100%;
+    margin-top: 5px;
+  }
+
+  .label2 {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    // font-family: 'Aestetico SemiBold' !important;
+    font-size: 32px !important;
+    text-align: left !important;
+    font-weight: 700 !important;
+    color: white !important;
+    flex: 5 !important;
+  }
+
+  p {
+    font-size: 14px !important;
+    font-weight: 200 !important;
+    margin-top: 0px !important;
+  }
+
+  h3 {
+    // font-family: 'Aestetico Regular' !important;
+    text-align: left !important;
+    color: white !important;
+  }
